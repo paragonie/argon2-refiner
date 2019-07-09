@@ -1,6 +1,7 @@
 {
     "name": "paragonie/argon2-refiner",
     "description": "Calculate the appropriate Argon2id parameters for the local hardware environment.",
+    "license": "ISC",
     "authors": [
         {
             "name": "Paragon Initiative Enterprises",
