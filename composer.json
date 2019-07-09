@@ -1,0 +1,34 @@
+{
+    "name": "paragonie/argon2-refiner",
+    "description": "Calculate the appropriate Argon2id parameters for the local hardware environment.",
+    "authors": [
+        {
+            "name": "Paragon Initiative Enterprises",
+            "email": "security@paragonie.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "ParagonIE\\Argon2Refiner\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "ParagonIE\\Argon2Refiner\\Tests\\": "tests/"
+        }
+    },
+    "bin": [
+        "bin/benchmark"
+    ],
+    "scripts": {
+        "post-autoload-dump": ["chmod +x bin/benchmark"],
+        "run-benchmarks": ["bin/benchmark"]
+    },
+    "require": {
+        "php": ">=7.2"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^8",
+        "vimeo/psalm": "^3"
+    }
+}

@@ -1,0 +1,51 @@
+#!/usr/bin/php
+<?php
+use ParagonIE\Argon2Refiner\ParameterRecommender;
+
+require dirname(__DIR__) . '/vendor/autoload.php';
+
+$ms = $argc > 1 ? $argv[1] : 500;
+$recommender = (new ParameterRecommender($ms));
+if ($argc > 2) {
+    $tolerance = (int) $argv[2];
+    if ($tolerance > 0) {
+        $recommender->setTolerance($tolerance);
+    }
+}
+
+$results = $recommender->runBenchmarks();
+if (empty($results)) {
+    echo 'No parameters meet your target time window.', PHP_EOL;
+    exit(255);
+}
+
+$min = [
+    'diff' => PHP_INT_MAX,
+    'data' => [
+        'time_cost' => null,
+        'mem_cost' => null,
+        'bench_time' => PHP_INT_MAX
+    ]
+];
+
+foreach ($results as $i => $res) {
+    $weightedDiff = $res['bench_time'] - $ms;
+    if ($weightedDiff > 0) {
+        // Apply a penalty to overshots
+        $weightedDiff *= 2;
+    } else {
+        $weightedDiff *= -1;
+    }
+    if ($weightedDiff < $min['diff']) {
+        $min = [
+            'diff' => $weightedDiff,
+            'data' => $res
+        ];
+    }
+    $results[$i]['diff'] = $weightedDiff;
+}
+
+echo 'Recommended Argon2id parameters:', PHP_EOL;
+echo "\tMemory cost: {$min['data']['mem_cost']}\n";
+echo "\t  Time cost: {$min['data']['time_cost']}\n\n";
+echo "\t  Real time: {$min['data']['bench_time']}ms\n";
