@@ -2,7 +2,12 @@
 <?php
 use ParagonIE\Argon2Refiner\ParameterRecommender;
 
-require dirname(__DIR__) . '/vendor/autoload.php';
+if (file_exists(dirname(__DIR__) . '/vendor/autoload.php')) {
+    require dirname(__DIR__) . '/vendor/autoload.php';
+} else {
+    // Trust the include path.
+    require 'vendor/autoload.php';
+}
 
 $ms = $argc > 1 ? $argv[1] : 500;
 $recommender = (new ParameterRecommender($ms));
