@@ -24,7 +24,7 @@ Alternatively, you can install this with Git.
 ```
 git clone https://github.com/paragonie/argon2-refiner
 cd argon2-refiner
-compsoer install
+composer install
 ```
 
 ## Usage Instructions
