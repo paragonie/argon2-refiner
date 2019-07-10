@@ -13,10 +13,18 @@ Argon2id password hashes on your machine.
 
 ## Installation Instructions
 
-Use Composer.
+Use [Composer](https://getcomposer.org/download).
 
 ```
 composer require paragonie/argon2-refiner
+```
+
+Alternatively, you can install this with Git.
+
+```
+git clone https://github.com/paragonie/argon2-refiner
+cd argon2-refiner
+compsoer install
 ```
 
 ## Usage Instructions
@@ -26,24 +34,29 @@ composer require paragonie/argon2-refiner
 Run the bundled `benchmark` script like so:
 
 ```
+# Installed via Composer:
+vendor/bin/benchmark [milliseconds=500] [tolerance=250]
+
+# Installed via Git:
 composer run-benchmarks [milliseconds=500] [tolerance=250]
 ```
 
 The expected output will look something like this:
 
 ```
-$ composer run-benchmarks 125
-> bin/benchmark '125'
-Recommended Argon2id parameters:
-	Memory cost: 79691776
-	  Time cost: 3
-
-	  Real time: 121ms
+$ vendor/bin/benchmark 125
+ Recommended Argon2id parameters:
+ 	       Memory cost (sodium): 79691776
+ 	Memory cost (password_hash): 77824
+ 	                  Time cost: 3
+ 
+ Real time: 124ms
 ```
 
-This means that if you set your Argon2id mem_cost to `79691776`
-and the `time_cost` to 3, you will get the closest parameters that
-take about 125 milliseconds to process (in this example, it took 121).
+This means that if you set your Argon2id mem_cost to `79691776` bytes
+(or `77824` KiB, which is what `password_hash()` expects) and the 
+`time_cost` to 3, you will get the closest parameters that take about 
+125 milliseconds to process (in this example, it took 124).
 
 ### Object-Oriented API
 
