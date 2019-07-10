@@ -5,7 +5,7 @@ use ParagonIE\Argon2Refiner\ParameterRecommender;
 if (file_exists(dirname(__DIR__) . '/vendor/autoload.php')) {
     // We're a standalone package
     require_once dirname(__DIR__) . '/vendor/autoload.php';
-} elseif (file_exists(dirname(__DIR__) . '/vendor/autoload.php')) {
+} elseif (file_exists(dirname(__DIR__, 3) . '/autoload.php')) {
     // We're installed as a library
     require_once dirname(__DIR__, 3) . '/autoload.php';
 } else {
