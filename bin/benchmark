@@ -45,7 +45,9 @@ foreach ($results as $i => $res) {
     $results[$i]['diff'] = $weightedDiff;
 }
 
+$reduced = $min['data']['mem_cost'] >> 10;
 echo 'Recommended Argon2id parameters:', PHP_EOL;
-echo "\tMemory cost: {$min['data']['mem_cost']}\n";
-echo "\t  Time cost: {$min['data']['time_cost']}\n\n";
-echo "\t  Real time: {$min['data']['bench_time']}ms\n";
+echo "\t       Memory cost (sodium): {$min['data']['mem_cost']}\n";
+echo "\tMemory cost (password_hash): {$reduced}\n";
+echo "\t                  Time cost: {$min['data']['time_cost']}\n\n";
+echo "Real time: {$min['data']['bench_time']}ms\n";
