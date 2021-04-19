@@ -2,8 +2,6 @@
 declare(strict_types=1);
 namespace ParagonIE\Argon2Refiner;
 
-use http\Exception\InvalidArgumentException;
-
 /**
  * Class ParameterRecommender
  * @package ParagonIE\Argon2Refiner
@@ -74,6 +72,7 @@ class ParameterRecommender
      * @param int $t
      * @param int $m
      * @return int (milliseconds)
+     * @psalm-suppress InvalidArgument
      */
     public function getMillisecondCost(int $t, int $m): int
     {
@@ -81,7 +80,7 @@ class ParameterRecommender
         $start = $stop = 0.0;
         if ($backend === 'sodium') {
             $start = microtime(true);
-            sodium_crypto_pwhash_str(
+            \sodium_crypto_pwhash_str(
                 $this->testPassword,
                 $t,
                 $m
