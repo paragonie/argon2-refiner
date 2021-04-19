@@ -1,6 +1,6 @@
 # Argon2 Refiner
 
-[![Build Status](https://travis-ci.org/paragonie/argon2-refiner.svg?branch=master)](https://travis-ci.org/paragonie/argon2-refiner)
+[![Build Status](https://github.com/paragonie/argon2-refiner/actions/workflows/ci.yml/badge.svg)](https://github.com/paragonie/argon2-refiner/actions)
 [![Latest Stable Version](https://poser.pugx.org/paragonie/argon2-refiner/v/stable)](https://packagist.org/packages/paragonie/argon2-refiner)
 [![Latest Unstable Version](https://poser.pugx.org/paragonie/argon2-refiner/v/unstable)](https://packagist.org/packages/paragonie/argon2-refiner)
 [![License](https://poser.pugx.org/paragonie/argon2-refiner/license)](https://packagist.org/packages/paragonie/argon2-refiner)
